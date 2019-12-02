@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>We just need time</title>
+	<link rel="icon" href="img/L-log.png">
+	<link rel="stylesheet" href="css/Article.css">
+    <link rel="stylesheet" href="css/homePage.css">
+    <link rel="stylesheet" href="MyIcon/iconfont.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/navigation.js"></script>
+    <base target="_blank">
+    <meta name="keywords" content="书栈,分享,幻想,闲说,说栈">
+</head>
+<body>
+    <nav  class="top-nav navbar-fixed nav-default" role="navigation">
+        
+        <div class="nav-box">
+        <!--左方LOGO标签 -->
+        <a href="homePage.jsp" class="M-log" >
+            <!-- 书栈logo -->
+            <img src="img/M-log.png" alt="">    
+        </a>
+        <!-- 写文章按钮 -->
+        <a href="#" class="btn btn-write ">
+            <i class="write-lg iconfont icon-maobi1"> 写文章</i>
+        </a>
+        <!-- 注册 -->
+        <a href="#" class="btn sign-up">注册</a>
+        <!-- 登录 -->
+        <a href="#" class="btn log-in">登录</a>   
+        <!-- 默认字体样式 -->
+        <div class="style-mode">
+            <a  class="style-mode-btn">
+                <i class="iconfont icon-Aa1 ic-mode"></i>
+            </a>    
+            <!-- 隐藏的更多模式 -->
+            <div class="more-mode" style="left: 1018px; display: none;">
+                <div class="meta">
+                    <i class="iconfont icon-yueliang nav-night"></i>
+                    <span>夜间模式</span>
+                </div>
+                <div class="switch day-night">
+                    <a class="switch-btn">开</a>
+                    <a class="switch-btn active">关</a>
+                </div>
+                 <hr>
+                <div class="switch font-family-grounp">
+                    <a class="switch-btn font-kai">楷体</a>
+                    <a class="switch-btn font-you active">幼圆</a>
+                </div>
+                <div class="switch font-mode">
+                    <a class="switch-btn active">简</a>
+                    <a class="switch-btn ">繁</a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 导航栏中间布局 -->
+        <div class="container">
+            <div class="navbar-collapse collapse in">
+            <ul class="nav navbar-nav">
+                <!-- 发现 -->
+                <li class="tab active">
+                    <a href="#">
+                        <span class="menu-text">发现</span>
+                        <i class="iconfont menu-icon icon-faxian"></i>
+                    </a>
+                </li>
+                <li class="tab t-follows">
+                    <a href="#">
+                        <span class="menu-text">关注</span>
+                        <i class="iconfont menu-icon icon-shuben"></i>
+                    </a>
+                </li>
+                <li class="tab notification">
+                    <a class="notification-btn">
+                        <span class="menu-text">消息</span>
+                        <i class="iconfont menu-icon icon-xiaoxi1"></i>
+                    </a>
+                    <!-- 下拉的消息列表 -->
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="#">
+                                <i class="iconfont ic-comments icon-_huaban"></i>
+                                <span>评论</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="iconfont ic-mail icon-youxiang"></i>
+                                <span>简信</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="iconfont ic-request icon-faqiqingqiu"></i>
+                                <span>投稿请求</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="iconfont ic-likes icon-xihuan"></i>
+                                <span>喜欢和赞</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="iconfont ic-follows icon-guanzhu"></i>
+                                <span>关注</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="iconfont ic-money icon-zanshangjilu"></i>
+                                <span>赞赏和付费</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="iconfont ic-other icon-iconfontgengduo"></i>
+                                <span>其他提醒</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <!-- 搜索栏 -->
+                <li class="search">
+                    <form action="/search" target="_blank" accept-charset="uft-8" method="post">
+                        <input type="hidden" value="✓" name="uft8">
+                        <input type="text" name="q" id="q"  autocomplete="off" placeholder="搜索" class="search-input">  
+                        <a class="btn-search" href="javascript:void(null)">
+                            <i class="iconfont ic-search icon-sousuo"></i>
+                        </a>
+                        <!-- 搜索栏提示 -->
+                        <div id="navbar-search-tips" >
+                            <!-- 最近搜索趋势 -->
+                            <div class="search-trending">
+                                <div class="search-trending-header clearfix">
+                                    <span>热门搜索</span>
+                                    <a >
+                                        <i class="iconfont icon-shuaxin ic-change"></i>
+                                        换一批
+                                    </a>
+                                </div>
+                                <ul class="search-trending-tags">
+                                    <li>
+                                        <a href="#">区块链</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">小程序</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">C++</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">畅销书</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">网络编程</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">美食</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">创意</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                </ul>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+     <div class="note">
+        <div id="note-fixed-ad-container">
+        <div id="fixed-ad-container">
+            <div style='display:  block;'>
+                <a href="#" id='web-note-ad-fixed'>
+                    <span class='close'>×</span>
+                </a>
+            </div>
+            <div id="write-notes-ad"></div>
+            <div id="youdao-fixed-ad"></div>
+            <div id="yuxi-fixed-ad"></div>
+            <div id="_so_pdsBy_0"></div>
+        </div>
+        </div>
+        <div class="post">
+            <div class="article">  <!-- 文章-->
+            <h1 class="title">We just need time</h1>
+            <div class="author">
+                    <a class="avatar" href="https://me.csdn.net/David_TD" target="_blank">
+                         <img src="img/avatar.jpg">
+                    </a>
+                    <div class="info">
+                         <span class="name">
+                            <a href="http://www.tblack.cn" target="_blank">书栈</a>
+                        </span>
+                         
+                         <div props-data-classes="user-follow-button-header" data-author-follow-button></div>
+                         <!-- 文章数据信息 -->
+                         <div class="meta">
+                         <!-- 如果文章更新时间大于发布时间，那么使用 tooltip 显示更新时间 -->
+                         <span class="publish-time" data-toggle="tooltip" data-placement="bottom" title="最后编辑于 2019.9.16 11:24">2019.9.16 11:25*</span>
+                         <span class="wordage"></span>
+                         </div>
+                    </div>
+                </div>
+                <p class="essay">
+                    平静不是伪装，乐观也同样不是。如果无法做到真正的平静和乐观，有一天你会很容易被击垮，甚至你会认为这个世界似乎已经没有了希望，这是多么危险的思想，也是一个多么感到悲观的人。毫无疑问， 陪伴和关心，能够解决很大一部分的问题，但并不是人人都有能够陪伴并且理解自己的人，那么我们必须要找到办法来进行自我解压。 stress ball(压力球),是我觉得可能有用的一种方法，至少对我来说是有用的。当我感觉不自在、紧张的时候，我会想象着手中有一个压力球，然后把拳头握紧，然后又放开，就像是潜意识里在进行深呼吸。
+                </p>
+                <p class="essay">
+                    散步和思考，或者说，散步和观察， 散步的时候观察环境，观察周围的人。环境大部分时候是不变的，而人， 有些习惯也是不变的， 所以在特定的时间特定的地点，总是能遇到那些和你有着相同习惯的人。 人和人之间存在交流，而周围的景色却好似很少与人产生共鸣，但是人会尝试去代入一种景色当中， 甚至是触景生情。 观察景色你会试着保持平静， 而观察人的好处是： 你可以用零代价来获得你观察的人的快乐，当你感受到别人的快乐的时候，似乎你也体会到了那一份快乐， 而它却又并不由你产生。
+                </p>
+                <p class="essay">
+                    观察景色时你会发现， 它们并不受你的心情影响， 你开心或难过，它似乎与平常无异，周围的景物也只是附和着天气来做出不一样的改变：太阳太大，我把叶子合上。下雨了，我要抬起头来多喝点水。起风了，我赶紧把脚跟站稳， 可别被风吹走了。 它们好似与你毫不相干，正是这样你会很难能够去理解并且去融入它们。 除非~你让自己平静下来，放弃胡思乱想，专心听着风，看着树，摸着草，好像你也是它们中的一员，是你和它们一起组成了这幅景色。
+                </p>
+                <p class="essay">
+                    同样的事情经历多次会丢失新鲜感， 而生活需要新鲜感来让你的大脑保持活跃，而不是让它感到沉闷的生活永远不会结束。这一点很重要，当然， 坚持做一件事情的习惯也很重要，习惯会让你不自觉的去做一件事，去说一句话，去想一个人。那么我们则需要在保持习惯的同时，为生活去创造新鲜感。那么这是有些难做到还是你压根不想去做？创建新鲜感需要你的大脑给予很大的帮助，它要帮忙策划，还有通知身体的各个部分去完成这一个计划。看起来并不容易，因为新鲜感则意味着不同，但是想想这能够给你带来多大的好处。 首先， 让你的大脑保持活跃，其次，让你愿意去让自己变得更好，也可以说让自己变得更开心。我相信， 好的新鲜感会让你变得乐观且富有活力，这正是解决思想包袱过于沉重的一种办法，同时也是能够让你变得平静的方法之一。然而要怎么去做，才是这个问题的关键，而正是这种问题，才会衍生出其他的问题， 而这些问题，永远都不会结束，而这，就是生活。
+                </p>
+            </div>
+
+
+</body>

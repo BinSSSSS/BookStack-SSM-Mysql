@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+        
+        
+<!--         导入外部 xml 文件
+        <import resource="classpath:cn/tblack/bookstack/config/mybatis/applicationContext-mybatis.xml"/> -->
+        
+        <!-- 配置事务管理器 -->
+        <bean name="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        	<property name="dataSource" ref="dataSource"/>
+        </bean>
+        
+        <!-- 事务通知 -->
+       	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+       		<!-- 通知属性 -->
+       		<tx:attributes>
+       			<!-- 传播行为 -->
+       			<!-- REQUIRED 必须的， 如果不存在事务则新创建一个 -->	
+       			<!-- SUPPORTS 非必需的， 如果不存在事务则不使用事务 -->
+       			<tx:method name="insert*" propagation="REQUIRED"/>
+       			<tx:method name="update*" propagation="REQUIRED"/>
+       			<tx:method name="delete*" propagation="REQUIRED"/>
+       			<tx:method name="select*" propagation="SUPPORTS" read-only="true"/>
+       		</tx:attributes>
+       	</tx:advice>
+        
+        
+        <!-- 将通知织入到切入点 -->
+        <aop:config>
+        	<!-- 配置切入点 -->
+        	<aop:pointcut expression="execution(* cn.tblack.bookstack.service.*.*(..))" id="txPointcut"/>
+        	<!-- 配置切入事务通知 -->
+        	<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
+        </aop:config>
+</beans>

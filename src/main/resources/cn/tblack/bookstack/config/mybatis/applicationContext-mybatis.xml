@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+	<!-- di注解 -->
+	<context:annotation-config />
+
+	<!-- 引入外部的数据库连接配置文件 -->
+
+	<!-- spring整合 mybatis. 配置数据源 -->
+	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
+		<property name="driverClassName" value="${oracle.driver}" /> <property name="url" 
+		value="${oracle.url}" /> <property name="username" value="${oracle.username}" 
+		/> <property name="password" value="${oracle.password}" /> </bean> -->
+
+
+	<!-- 配置 阿里巴巴的 DruidDataSource 作为数据源 -->
+	<bean id="dataSource"
+		class="com.alibaba.druid.pool.DruidDataSource">
+		<property name="url" value="${jdbc.url}" />
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+		<property name="initialSize" value="20" />
+		<property name="maxActive" value="50" />
+		<property name="maxWait" value="60000" />
+		<property name="minIdle" value="20" />
+		<property name="filters" value="log4j" />
+	</bean>
+
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 引用之前定义的dataSource -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 可选配置, 导入本地映射文件 -->
+		<property name="configurationProperties">
+			<value>
+				lazyLoadingEnabled=true			<!--配置允许懒加载 -->
+				aggressiveLazyLoading=false		<!--取消关联查询积极性 -->
+				lazyLoadTriggerMethods=clone	<!--哪些方法触发关系查询 -->
+			</value>
+		</property>
+
+		<!-- 需要使用类型别名的包 -->
+		<property name="typeAliasesPackage"
+			value="cn.tblack.bookstack.pojo" />
+
+		<!-- 配置mapper配置文件的路径 -->
+		<property name="mapperLocations"
+			value="classpath:cn/tblack/bookstack/config/mapper/*.xml" />
+	</bean>
+
+	<!-- 扫描配置 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage"
+			value="cn.tblack.bookstack.mapper" />
+		<!-- <property name="sqlSessionFactoryBeanName"
+			value="sqlSessionFactory"></property> -->
+	</bean>
+
+</beans>
